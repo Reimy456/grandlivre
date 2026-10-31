@@ -1,0 +1,122 @@
+# Layout src/ (norme PyPA). Versionnement sémantique ; publication PyPI par
+# trusted publishing (OIDC) sur tag `v*` (.github/workflows/release.yml).
+
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "grandlivre"
+version = "1.0.0"
+description = "Client Python non officiel pour l'API comptabilité Pennylane V2 (lecture et écriture idempotente)."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [
+    { name = "Reimy456" },
+]
+keywords = [
+    "pennylane",
+    "accounting",
+    "comptabilité",
+    
+    "api-client",
+    "openapi",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial :: Accounting",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.28",
+    "pydantic>=2",
+    "pydantic-settings>=2",
+    "aiolimiter>=1.1",
+    "tenacity>=8",
+    # anyio : verrou de concurrence du journal d'écriture (wal.py l'importe directement).
+    # httpx la tire transitivement ; déclarée en direct car wal.py l'importe.
+    "anyio>=4",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+    "pytest-cov>=4",
+    "respx>=0.21",
+    # hypothesis : tests par propriétés (stabilité des empreintes, équilibre des écritures).
+    "hypothesis>=6",
+    # pytest-benchmark : benchmarks de référence (tests/benchmarks).
+    "pytest-benchmark>=4",
+]
+dev = [
+    "ruff",
+    "mypy",
+    # Outillage sécurité et performance : bandit (SAST), pip-audit (CVE des dépendances),
+    # pytest-benchmark (benchmarks de référence).
+    "bandit>=1.8",
+    "pip-audit>=2.7",
+    "pytest-benchmark>=4",
+]
+
+[project.urls]
+Homepage = "https://github.com/Reimy456/grandlivre"
+Repository = "https://github.com/Reimy456/grandlivre"
+Changelog = "https://github.com/Reimy456/grandlivre/blob/main/CHANGELOG.md"
+Issues = "https://github.com/Reimy456/grandlivre/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["grandlivre*"]
+
+[tool.setuptools.package-data]
+grandlivre = ["py.typed"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+# Les tests smoke nécessitent un Company Token réel ; exclus par défaut.
+# Exécution explicite : pytest -m smoke
+addopts = "-m 'not smoke'"
+markers = [
+    "smoke: tests d'intégration sandbox réelle (nécessite PENNYLANE_API_TOKEN, exclus par défaut)",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["grandlivre"]
+omit = [
+    "*/tests/*",
+]
+
+[tool.coverage.report]
+fail_under = 96
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+exclude = [
+    "tests/",
+]

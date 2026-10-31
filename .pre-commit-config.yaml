@@ -1,0 +1,12 @@
+# Hooks locaux : `pip install pre-commit && pre-commit install`.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.5
+    hooks:
+      - id: ruff-check
+      - id: ruff-format
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        exclude: ^(openapi_spec_raw\.json|openapi_spec_filtered\.json|tests/benchmarks/baseline\.json)$

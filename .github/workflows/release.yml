@@ -1,0 +1,103 @@
+name: Release to PyPI
+
+# Déclenchement uniquement sur push d'un tag SemVer `v*` (ex. v0.1.0).
+# Build wheel + sdist + publication PyPI via OpenID Connect (OIDC) Trusted
+# Publishers — pas de secret PYPI_TOKEN à gérer côté repo. Configuration
+# Trusted Publisher requise côté PyPI projet :
+# https://docs.pypi.org/trusted-publishers/
+
+on:
+  push:
+    tags:
+      - "v*"
+
+# Moindre privilège par défaut ; chaque job de publication déclare ce qu'il ajoute.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Build sdist + wheel
+        run: python -m build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pypi-dists
+          path: dist/
+          retention-days: 7
+
+  publish-testpypi:
+    name: Publish to TestPyPI (rc tags)
+    needs: build
+    runs-on: ubuntu-latest
+    # Préversion = tag PEP 440 avec suffixe rcN (ex. v1.1.0rc1), sans tiret.
+    if: contains(github.ref_name, 'rc')
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/project/grandlivre/
+
+    permissions:
+      id-token: write  # OIDC obligatoire pour Trusted Publishers.
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: pypi-dists
+          path: dist/
+
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+  publish-pypi:
+    name: Publish to PyPI (stable tags)
+    needs: build
+    runs-on: ubuntu-latest
+    # Tag stable = sans suffixe rcN.
+    if: "!contains(github.ref_name, 'rc')"
+
+    environment:
+      name: pypi
+      url: https://pypi.org/project/grandlivre/
+
+    permissions:
+      id-token: write  # OIDC pour Trusted Publishers.
+      contents: write  # création de la GitHub Release (étape suivante).
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: pypi-dists
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+          fail_on_unmatched_files: true

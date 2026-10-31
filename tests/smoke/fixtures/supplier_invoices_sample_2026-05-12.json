@@ -1,0 +1,209 @@
+{
+  "captured_at": "2026-05-12T05:29:42",
+  "endpoint": "_get_supplier_invoices (MCP tool, Option 1-bis)",
+  "exercice_used": "2026",
+  "exercice_resolved": {
+    "id": "9585717",
+    "start": "2026-01-01",
+    "finish": "2026-12-31"
+  },
+  "filters_applied": {
+    "date_from": "2026-01-01",
+    "date_to": "2026-12-31",
+    "supplier_id": null,
+    "status": null
+  },
+  "cabinet_id": "<anon-cabinet>",
+  "dossier_id": "<anon-dossier>",
+  "count": 238,
+  "truncated": false,
+  "next_cursor": null,
+  "invoice_top_level_keys_sample": [
+    "accounting_status",
+    "amount",
+    "archived_at",
+    "categories",
+    "created_at",
+    "currency",
+    "currency_amount",
+    "currency_amount_before_tax",
+    "currency_tax",
+    "date",
+    "deadline",
+    "due_date",
+    "e_invoicing",
+    "exchange_rate",
+    "external_reference",
+    "filename",
+    "id",
+    "invoice_lines",
+    "invoice_number",
+    "label",
+    "ledger_entry",
+    "matched_transactions",
+    "payment_status",
+    "payments",
+    "public_file_url",
+    "reconciled",
+    "remaining_amount_with_tax",
+    "remaining_amount_without_tax",
+    "status",
+    "supplier",
+    "tax",
+    "tax_amount",
+    "transaction_reference",
+    "updated_at"
+  ],
+  "invoices_sanitized_sample": [
+    {
+      "id": "<anon-id-1>",
+      "invoice_number": "",
+      "label": "<anon-label>",
+      "date": "2026-04-17",
+      "due_date": null,
+      "currency": "EUR",
+      "amount": "0.0",
+      "currency_amount": "0.0",
+      "tax_amount": null,
+      "status": null,
+      "supplier": {
+        "id": 280310366,
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "archived_at": null,
+      "created_at": "2026-04-17T18:50:39.960684Z",
+      "currency_amount_before_tax": "0.0",
+      "currency_tax": "0.0",
+      "deadline": "2026-05-17",
+      "filename": "<anon-filename>",
+      "payment_status": "to_be_processed",
+      "remaining_amount_with_tax": null,
+      "remaining_amount_without_tax": null,
+      "tax": "0.0",
+      "updated_at": "2026-04-24T16:57:09.041348Z",
+      "reconciled": false,
+      "public_file_url": "<anon-public_file_url>",
+      "exchange_rate": "1",
+      "accounting_status": "entry",
+      "ledger_entry": "<anon-ledger_entry>",
+      "transaction_reference": null,
+      "invoice_lines": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "categories": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "payments": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "matched_transactions": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "external_reference": "<anon-external_reference>",
+      "e_invoicing": {
+        "status": null,
+        "reason": null
+      }
+    },
+    {
+      "id": "<anon-id-2>",
+      "invoice_number": "<anon-invoice_number>",
+      "label": "<anon-label>",
+      "date": "2026-01-28",
+      "due_date": null,
+      "currency": "EUR",
+      "amount": "6660.0",
+      "currency_amount": "6660.0",
+      "tax_amount": null,
+      "status": null,
+      "supplier": {
+        "id": 280340455,
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "archived_at": null,
+      "created_at": "2026-04-17T18:50:39.958090Z",
+      "currency_amount_before_tax": "6660.0",
+      "currency_tax": "0.0",
+      "deadline": "2026-05-17",
+      "filename": "<anon-filename>",
+      "payment_status": "to_be_processed",
+      "remaining_amount_with_tax": "-6660.0",
+      "remaining_amount_without_tax": "-6660.0",
+      "tax": "0.0",
+      "updated_at": "2026-04-24T16:57:09.041348Z",
+      "reconciled": false,
+      "public_file_url": "<anon-public_file_url>",
+      "exchange_rate": "1.0",
+      "accounting_status": "validation_needed",
+      "ledger_entry": "<anon-ledger_entry>",
+      "transaction_reference": null,
+      "invoice_lines": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "categories": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "payments": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "matched_transactions": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "external_reference": "<anon-external_reference>",
+      "e_invoicing": {
+        "status": null,
+        "reason": null
+      }
+    },
+    {
+      "id": "<anon-id-3>",
+      "invoice_number": "",
+      "label": "<anon-label>",
+      "date": "2026-04-17",
+      "due_date": null,
+      "currency": "EUR",
+      "amount": "0.0",
+      "currency_amount": "0.0",
+      "tax_amount": null,
+      "status": null,
+      "supplier": {
+        "id": 280310366,
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "archived_at": null,
+      "created_at": "2026-04-17T18:50:39.955711Z",
+      "currency_amount_before_tax": "0.0",
+      "currency_tax": "0.0",
+      "deadline": "2026-05-17",
+      "filename": "<anon-filename>",
+      "payment_status": "to_be_processed",
+      "remaining_amount_with_tax": null,
+      "remaining_amount_without_tax": null,
+      "tax": "0.0",
+      "updated_at": "2026-04-24T16:57:09.041348Z",
+      "reconciled": false,
+      "public_file_url": "<anon-public_file_url>",
+      "exchange_rate": "1",
+      "accounting_status": "entry",
+      "ledger_entry": "<anon-ledger_entry>",
+      "transaction_reference": null,
+      "invoice_lines": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "categories": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "payments": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "matched_transactions": {
+        "url": "https://app.pennylane.com/api/external/v2<anon-path>"
+      },
+      "external_reference": "<anon-external_reference>",
+      "e_invoicing": {
+        "status": null,
+        "reason": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# Configuration Bandit (analyse statique de sécurité).
+# Périmètre : le code de la bibliothèque (src/grandlivre/) ; les tests sont exclus
+# (leurs assert sont ceux de pytest).
+
+exclude_dirs:
+  - tests
+  - .egg-info
+  - __pycache__
+  - venv
+  - .git
+
+skips:
+  - B101  # assert_used : invariants défensifs des modèles Pydantic v2

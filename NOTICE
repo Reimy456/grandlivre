@@ -1,0 +1,8 @@
+grandlivre
+Copyright 2026 Reimy456
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+openapi_spec_raw.json is the OpenAPI document published by Pennylane SAS for its
+API (https://pennylane.readme.io/), reproduced unchanged for the test suite. It is
+the property of Pennylane SAS and is not covered by the licence above.

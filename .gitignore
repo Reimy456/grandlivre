@@ -1,0 +1,48 @@
+# Caches Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage.xml
+*.cover
+
+# Environnements virtuels
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Spec OpenAPI Pennylane : la brute `openapi_spec_raw.json` (téléchargée par
+# scripts/regenerate_openapi.sh) EST versionnée depuis le 18/10/2026 — baseline de la sentinelle
+# tests/sentinelle/test_openapi_spec_drift.py (120 chemins, 115 schémas), qui doit tourner en CI
+# comme sur le poste. La filtrée est dérivée de la brute par scripts/filter_spec.py (le code
+# généré dans src/pennylane_accounting/_generated/ EST versionné) : non suivie.
+/openapi_spec_filtered.json
