@@ -47,7 +47,9 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
-    "pytest>=8",
+    # pytest-benchmark 5.3.0 lit `node._nodeid`, retiré par pytest 9.2 : la fixture `benchmark`
+    # échoue au setup (CI publique du 31/10/2026). Borne levée quand le plugin suivra.
+    "pytest>=8,<9.2",
     "pytest-asyncio>=0.23",
     "pytest-cov>=4",
     "respx>=0.21",
